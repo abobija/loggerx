@@ -6,17 +6,12 @@ import 'package:loggerx/src/logging.dart';
 class Logger {
   late final Logging _logging;
 
-  /// Logger level
-  late LogLevel level;
-
   /// Logger unique name
   final String name;
 
-  /// Logger constructor with unique [name] and optional [level].
-  /// Default level is [LogLevel.info]
-  Logger(this.name, { LogLevel level = LogLevel.info }) {
+  /// Logger constructor with unique [name]
+  Logger(this.name) {
     _logging = logging;
-    this.level = level;
     _logging.addLogger(this);
   }
 

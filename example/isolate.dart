@@ -9,8 +9,9 @@ void consoleLogging(Log log) {
 
 void main() async {
   logging.onLog.listen(consoleLogging);
+  logging.level = LogLevel.debug;
 
-  final logger = Logger('isolate_logger', level: LogLevel.debug);
+  final logger = Logger('isolate_logger');
 
   final rPort = ReceivePort();
 

@@ -14,9 +14,6 @@ void main() {
   final customLogger = Logger('custom_logger');
   final secondLogger = Logger('second_logger');
 
-  // Set the level of second logger
-  secondLogger.level = LogLevel.info;
-
   customLogger.debug("This is debug message from custom logger");
   customLogger.warning("Something suspicious happened");
   customLogger.error("Immediately abort everything!");
@@ -30,7 +27,7 @@ void main() {
   // But custom logger still can print out verbose logs
   customLogger.verbose("I still can shout out verbose messages");
 
-  // Instead changing logger level directly we can apply filter
+  // Apply filter for custom_logger
   logging.filter('custom_logger', LogLevel.error);
 
   customLogger.info("You cant see this, because");

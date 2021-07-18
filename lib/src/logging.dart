@@ -41,9 +41,7 @@ class Logging {
   Stream<Log> get onLog => _streamCtrl.stream;
 
   void log(Logger logger, Object msg, LogLevel level, { Object? error, StackTrace? stackTrace }) {
-    if(!enabled
-      || level.index > logger.level.index 
-      || level.index > level.index) {
+    if(!enabled || level.index > this.level.index) {
       return;
     }
 
@@ -127,7 +125,7 @@ class Logging {
 
   /// Returns filter for [logger] or null if not found
   LogFilter? findFilterForLogger(Logger logger) {
-    _findFilter(logger.name);
+    return _findFilter(logger.name);
   }
 
   /// Creates new filter or change existing one for logger by [loggerName]

@@ -1,3 +1,7 @@
+## 1.2.0
+
+Removed level property from Logger. Filtering with global `logging` variable is still available.
+
 ## 1.1.0
 
 For isolate support logging now use stream instead of logging function.
