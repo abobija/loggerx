@@ -6,8 +6,3 @@ repository: https://github.com/abobija/loggerx
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
-
-dependencies:
-  
-
-dev_dependencies:
