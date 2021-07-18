@@ -1,42 +1,102 @@
-import 'dart:io';
+import 'dart:async';
 
 import 'package:intl/intl.dart';
 import 'package:loggerx/loggerx.dart';
+import 'package:loggerx/src/log.dart';
+import 'package:loggerx/src/log_color.dart';
 import 'package:loggerx/src/log_filter.dart';
 import 'package:loggerx/src/log_level.dart';
 import 'package:loggerx/src/logger.dart';
 
-class Logging {
-  final _loggers = <Logger>[];
-  final _filters = <LogFilter>[];
+final _lvlColor = {
+  LogLevel.none    : LogColor.cyan,
+  LogLevel.error   : LogColor.red,
+  LogLevel.warning : LogColor.yellow,
+  LogLevel.info    : LogColor.green,
+  LogLevel.debug   : LogColor.magenta,
+  LogLevel.verbose : LogColor.white,
+};
 
-  /// Status of all loggers.
-  /// To disable all loggers set [function] to null
-  bool get enabled => function != null;
+class Logging {
+  /// Status of all loggers
+  var enabled = true;
 
   /// Global level of all loggers
   /// Default is [LogLevel.info]
   var level = LogLevel.info;
 
-  /// Function that is used for printing logs.
-  /// Default is [stderr.write]
-  /// Set it to null to completely disable logging
-  LoggingFunction? function = stderr.write;
-
   /// DateTime format using in logs.
-  /// Default is [DateFormat.Hms]
-  var dateTimeFormat = DateFormat.Hms();
+  /// Default is Hms.
+  /// See https://pub.dev/documentation/intl/latest/intl/DateFormat-class.html for available formats
+  var dateTimeFormat = "Hms";
 
   /// Show or hide milliseconds in datetime
   var milliseconds = true;
 
-  /// Write newline after every log. Default is true
-  var newLine = true;
+  final _loggers = <Logger>[];
+  final _filters = <LogFilter>[];
+  final _streamCtrl = StreamController<Log>.broadcast();
+
+  /// Logs stream
+  Stream<Log> get onLog => _streamCtrl.stream;
+
+  void log(Logger logger, Object msg, LogLevel level, { Object? error, StackTrace? stackTrace }) {
+    if(!enabled
+      || level.index > logger.level.index 
+      || level.index > level.index) {
+      return;
+    }
+
+    final filter = findFilterForLogger(logger);
+
+    if(filter != null && level.index > filter.level.index) {
+      return;
+    }
+
+    if(!(msg is List) && msg is Iterable) { // considering as lazy iterable
+      msg = msg.toList();
+    }
+
+    final now  = DateTime.now().toLocal();
+    final buffer = StringBuffer();
+
+    buffer.writeAll([
+      _lvlColor[level],
+      '[',
+      DateFormat(dateTimeFormat).format(now),
+      !milliseconds ? '' : ".${now.millisecond.toString().padLeft(3, '0')}",
+      '] [',
+      logger.name,
+      '] [',
+      level.toString().split('.')[1].toUpperCase(),
+      '] ',
+      msg.toString(),
+      LogColor.$null
+    ]);
+
+    if(error != null) {
+      buffer.write("\n");
+      buffer.write("${_lvlColor[level]}[exception] $error${LogColor.$null}");
+    }
+
+    if(stackTrace != null) {
+      buffer.write("\n");
+      buffer.writeln("${_lvlColor[level]}[stacktrace]${LogColor.$null}");
+      buffer.write("$stackTrace");
+    }
+
+    _streamCtrl.sink.add(new Log(
+      logger,
+      now,
+      level,
+      buffer.toString()
+    ));
+  }
 
   /// Returns logger by [name].
   /// If logger does not exists, null will be returned
   Logger? findLogger(String name) {
-    for(var l in logging._loggers) {
+    for(var l in _loggers) {
       if(l.name == name) {
         return l;
       }
@@ -66,7 +126,9 @@ class Logging {
   }
 
   /// Returns filter for [logger] or null if not found
-  LogFilter? findFilterForLogger(Logger logger) => _findFilter(logger.name);
+  LogFilter? findFilterForLogger(Logger logger) {
+    _findFilter(logger.name);
+  }
 
   /// Creates new filter or change existing one for logger by [loggerName]
   void filter(String loggerName, LogLevel level) {

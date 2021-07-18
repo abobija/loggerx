@@ -14,9 +14,25 @@ Loggers also supports attaching `exception` and `stackTrace` objects to logging 
 
 ![exception image](doc/imgs/exception.png)
 
-## Example
+## Examples
 
-Example is available in [example.dart](example/example.dart) file.
+Multiple examples are available in [example](example) folder.
+
+### Basic example
+
+```dart
+import 'package:loggerx/loggerx.dart';
+
+void consoleLogging(Log log) {
+  stderr.writeln(log.message);
+}
+
+void main() {
+  logging.onLog.listen(consoleLogging);
+  
+  log.info("Application started");
+}
+```
 
 ## Author
 

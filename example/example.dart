@@ -1,6 +1,10 @@
+import 'dart:io';
+
 import 'package:loggerx/loggerx.dart';
 
 void main() {
+  logging.onLog.listen((log) => stderr.writeln(log.message));
+
   // Set global level for all loggers to verbose
   logging.level = LogLevel.verbose;
 
@@ -8,9 +12,10 @@ void main() {
   log.info("Application successfully started");
 
   final customLogger = Logger('custom_logger');
-
   final secondLogger = Logger('second_logger');
-  secondLogger.level = LogLevel.info; // Set level of second logger
+
+  // Set the level of second logger
+  secondLogger.level = LogLevel.info;
 
   customLogger.debug("This is debug message from custom logger");
   customLogger.warning("Something suspicious happened");
