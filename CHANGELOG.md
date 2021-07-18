@@ -1,3 +1,7 @@
+## 1.0.1
+
+Updated description and badges style.
+
 ## 1.0.0
 
 Initial release
