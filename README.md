@@ -8,11 +8,11 @@ Tiny but powerful console logger with default root logger and ability to create 
 
 Logger supports 6 levels of logging which are `none`, `error`, `warning`, `info`, `debug` and `verbose`.
 
-![example image](docs/imgs/example.png)
+![example image](doc/imgs/example.png)
 
 Loggers also supports attaching `exception` and `stackTrace` objects to logging functions that will produce next output:
 
-![exception image](docs/imgs/exception.png)
+![exception image](doc/imgs/exception.png)
 
 ## Example
 
