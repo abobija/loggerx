@@ -1,6 +1,6 @@
 # loggerx
 
-![license](https://img.shields.io/github/license/abobija/loggerx?style=flat-square) [![pub version](https://img.shields.io/pub/v/loggerx?color=blue&logo=dart&style=flat-square)](https://pub.dev/packages/loggerx)
+[![pub version](https://img.shields.io/pub/v/loggerx?color=blue&logo=dart&style=for-the-badge)](https://pub.dev/packages/loggerx) ![license](https://img.shields.io/github/license/abobija/loggerx?style=for-the-badge)
 
 Tiny but powerful console logger with default root logger and ability to create custom loggers with runtime level filtering.
 
