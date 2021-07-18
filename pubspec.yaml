@@ -2,6 +2,7 @@ name: loggerx
 description: Tiny but powerful console logger with default root logger and ability to create custom loggers with runtime level filtering.
 version: 0.0.1-dev.1
 homepage: https://abobija.com
+repository: https://github.com/abobija/loggerx
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
