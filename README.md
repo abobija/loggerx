@@ -1,6 +1,6 @@
 # loggerx
 
-A new Flutter package project.
+Tiny but powerful console logger with default root logger and ability to create custom loggers with runtime level filtering.
 
 ## Getting Started
 
