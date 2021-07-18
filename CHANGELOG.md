@@ -1,3 +1,7 @@
+## 1.3.2
+
+Formating.
+
 ## 1.3.1
 
 Using `print` instead of `stderr.writeln` since second one is visible only in Logs in flutter and not in console.
