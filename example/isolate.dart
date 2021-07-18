@@ -11,13 +11,13 @@ void main() async {
   final rPort = ReceivePort();
 
   rPort.listen((message) {
-    if(message is SendPort) {
+    if (message is SendPort) {
       message.send(logger);
     }
   });
 
   log.info("Application started");
-  
+
   final isolate = await Isolate.spawn(task, rPort.sendPort);
   await Future.delayed(Duration(seconds: 1));
   isolate.kill(priority: Isolate.immediate);
@@ -28,7 +28,7 @@ void task(SendPort sPort) {
   final rPort = ReceivePort();
 
   rPort.listen((message) {
-    if(message is Logger) {
+    if (message is Logger) {
       message.debug("Hello from isolate");
     }
   });

@@ -6,12 +6,12 @@ import 'package:loggerx/src/log_level.dart';
 import 'package:loggerx/src/logger.dart';
 
 final _lvlColor = {
-  LogLevel.none    : LogColor.cyan,
-  LogLevel.error   : LogColor.red,
-  LogLevel.warning : LogColor.yellow,
-  LogLevel.info    : LogColor.green,
-  LogLevel.debug   : LogColor.magenta,
-  LogLevel.verbose : LogColor.white,
+  LogLevel.none: LogColor.cyan,
+  LogLevel.error: LogColor.red,
+  LogLevel.warning: LogColor.yellow,
+  LogLevel.info: LogColor.green,
+  LogLevel.debug: LogColor.magenta,
+  LogLevel.verbose: LogColor.white,
 };
 
 class Logging {
@@ -33,22 +33,24 @@ class Logging {
   /// Show or hide milliseconds in datetime
   var milliseconds = true;
 
-  void log(Logger logger, Object msg, LogLevel level, { Object? error, StackTrace? stackTrace }) {
-    if(!enabled || level.index > this.level.index) {
+  void log(Logger logger, Object msg, LogLevel level,
+      {Object? error, StackTrace? stackTrace}) {
+    if (!enabled || level.index > this.level.index) {
       return;
     }
 
     final filter = findFilterForLogger(logger);
 
-    if(filter != null && level.index > filter.level.index) {
+    if (filter != null && level.index > filter.level.index) {
       return;
     }
 
-    if(!(msg is List) && msg is Iterable) { // considering as lazy iterable
+    if (!(msg is List) && msg is Iterable) {
+      // considering as lazy iterable
       msg = msg.toList();
     }
 
-    final now  = DateTime.now().toLocal();
+    final now = DateTime.now().toLocal();
     final buffer = StringBuffer();
 
     buffer.writeAll([
@@ -65,12 +67,12 @@ class Logging {
       LogColor.$null
     ]);
 
-    if(error != null) {
+    if (error != null) {
       buffer.write("\n");
       buffer.write("${_lvlColor[level]}[exception] $error${LogColor.$null}");
     }
 
-    if(stackTrace != null) {
+    if (stackTrace != null) {
       buffer.write("\n");
       buffer.writeln("${_lvlColor[level]}[stacktrace]${LogColor.$null}");
       buffer.write("$stackTrace");
@@ -78,17 +80,17 @@ class Logging {
 
     /// ToDo: Implement streams once when
     /// Dart support sending Function type between isolate ports
-    /// 
+    ///
     /// follow this issue https://github.com/dart-lang/sdk/issues/46623
-    
+
     print(buffer.toString());
   }
 
   /// Returns logger by [name].
   /// If logger does not exists, null will be returned
   Logger? findLogger(String name) {
-    for(var l in _loggers) {
-      if(l.name == name) {
+    for (var l in _loggers) {
+      if (l.name == name) {
         return l;
       }
     }
@@ -99,7 +101,7 @@ class Logging {
   /// Adds new [logger] to existing list of loggers.
   /// If logger with the same name already exists ArgumentError will be thrown.
   void addLogger(Logger logger) {
-    if(findLogger(logger.name) != null) {
+    if (findLogger(logger.name) != null) {
       throw ArgumentError("Logger with name \"${logger.name}\" already exists");
     }
 
@@ -107,8 +109,8 @@ class Logging {
   }
 
   LogFilter? _findFilter(String loggerName) {
-    for(var f in _filters) {
-      if(f.loggerName == loggerName) {
+    for (var f in _filters) {
+      if (f.loggerName == loggerName) {
         return f;
       }
     }
@@ -125,7 +127,7 @@ class Logging {
   void filter(String loggerName, LogLevel level) {
     var filter = _findFilter(loggerName);
 
-    if(filter == null) {
+    if (filter == null) {
       filter = LogFilter(loggerName, level);
       _filters.add(filter);
     } else {
