@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:intl/intl.dart';
 import 'package:loggerx/loggerx.dart';
 import 'package:loggerx/src/log_color.dart';
@@ -83,7 +81,7 @@ class Logging {
     /// 
     /// follow this issue https://github.com/dart-lang/sdk/issues/46623
     
-    stderr.writeln(buffer.toString());
+    print(buffer.toString());
   }
 
   /// Returns logger by [name].

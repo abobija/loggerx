@@ -1,3 +1,7 @@
+## 1.3.1
+
+Using `print` instead of `stderr.writeln` since second one is visible only in Logs in flutter and not in console.
+
 ## 1.3.0
 
 Discard streams because Function type still cant be sent to Isolate.
