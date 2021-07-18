@@ -1,9 +1,6 @@
-import 'dart:io';
-
 import 'package:loggerx/loggerx.dart';
 
 void main() {
-  logging.onLog.listen((log) => stderr.writeln(log.message));
   log.info('Application started');
   
   try {

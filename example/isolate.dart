@@ -3,12 +3,7 @@ import 'dart:isolate';
 
 import 'package:loggerx/loggerx.dart';
 
-void consoleLogging(Log log) {
-  stderr.writeln(log.message);
-}
-
 void main() async {
-  logging.onLog.listen(consoleLogging);
   logging.level = LogLevel.debug;
 
   final logger = Logger('isolate_logger');

@@ -1,3 +1,8 @@
+## 1.3.0
+
+Discard streams because Function type still cant be sent to Isolate.
+Logger will now use hardcoded `stderr.writeln` function for printing logs.
+
 ## 1.2.0
 
 Removed level property from Logger. Filtering with global `logging` variable is still available.

@@ -1,8 +1,7 @@
-import 'dart:async';
+import 'dart:io';
 
 import 'package:intl/intl.dart';
 import 'package:loggerx/loggerx.dart';
-import 'package:loggerx/src/log.dart';
 import 'package:loggerx/src/log_color.dart';
 import 'package:loggerx/src/log_filter.dart';
 import 'package:loggerx/src/log_level.dart';
@@ -18,6 +17,9 @@ final _lvlColor = {
 };
 
 class Logging {
+  final _loggers = <Logger>[];
+  final _filters = <LogFilter>[];
+
   /// Status of all loggers
   var enabled = true;
 
@@ -32,13 +34,6 @@ class Logging {
 
   /// Show or hide milliseconds in datetime
   var milliseconds = true;
-
-  final _loggers = <Logger>[];
-  final _filters = <LogFilter>[];
-  final _streamCtrl = StreamController<Log>.broadcast();
-
-  /// Logs stream
-  Stream<Log> get onLog => _streamCtrl.stream;
 
   void log(Logger logger, Object msg, LogLevel level, { Object? error, StackTrace? stackTrace }) {
     if(!enabled || level.index > this.level.index) {
@@ -83,12 +78,12 @@ class Logging {
       buffer.write("$stackTrace");
     }
 
-    _streamCtrl.sink.add(new Log(
-      logger,
-      now,
-      level,
-      buffer.toString()
-    ));
+    /// ToDo: Implement streams once when
+    /// Dart support sending Function type between isolate ports
+    /// 
+    /// follow this issue https://github.com/dart-lang/sdk/issues/46623
+    
+    stderr.writeln(buffer.toString());
   }
 
   /// Returns logger by [name].

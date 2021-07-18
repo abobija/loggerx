@@ -1,10 +1,6 @@
-import 'dart:io';
-
 import 'package:loggerx/loggerx.dart';
 
 void main() {
-  logging.onLog.listen((log) => stderr.writeln(log.message));
-
   // Set global level for all loggers to verbose
   logging.level = LogLevel.verbose;
 

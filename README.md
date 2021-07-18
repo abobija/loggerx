@@ -6,6 +6,8 @@ Tiny but powerful logger with default root logger and ability to create custom l
 
 ## About
 
+> NOTE: Logger currently supports only logging to console.
+
 Logger supports 6 levels of logging which are `none`, `error`, `warning`, `info`, `debug` and `verbose`.
 
 ![example image](doc/imgs/example.png)
@@ -23,13 +25,7 @@ Multiple examples are available in [example](example) folder.
 ```dart
 import 'package:loggerx/loggerx.dart';
 
-void consoleLogging(Log log) {
-  stderr.writeln(log.message);
-}
-
 void main() {
-  logging.onLog.listen(consoleLogging);
-  
   log.info("Application started");
 }
 ```
