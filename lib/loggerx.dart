@@ -1,11 +1,16 @@
 library loggerx;
 
-/// A Calculator.
-class Calculator {
-  /// Returns [value] plus 1.
-  int addOne(int value) => value + 1;
+import 'package:loggerx/src/logger.dart';
+import 'package:loggerx/src/logging.dart';
 
-  void test() {
-    print("");
-  }
-}
+export 'src/log_level.dart';
+export 'src/logger.dart';
+
+/// Loggerx configuration object
+final logging = Logging();
+
+/// Loggerx root logger
+final log = Logger('root');
+
+/// Loggerx logging function prototype
+typedef void LoggingFunction(Object? object);

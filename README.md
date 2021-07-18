@@ -2,13 +2,25 @@
 
 Tiny but powerful console logger with default root logger and ability to create custom loggers with runtime level filtering.
 
-## Getting Started
+## About
 
-This project is a starting point for a Dart
-[package](https://flutter.dev/developing-packages/),
-a library module containing code that can be shared easily across
-multiple Flutter or Dart projects.
+Logger supports 6 levels of logging which is `none`, `error`, `warning`, `info`, `debug` and `verbose`.
 
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.dev/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+![example image](docs/imgs/example.png)
+
+Loggers also supports attaching `exception` and `stackTrace` objects to logging functions:
+
+![exception image](docs/imgs/exception.png)
+
+## Example
+
+Example is available in [example.dart](example/example.dart) file.
+
+## Author
+
+GitHub: [abobija](https://github.com/abobija)<br>
+Homepage: [abobija.com](https://abobija.com)
+
+## License
+
+[MIT](LICENSE)
