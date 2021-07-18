@@ -25,9 +25,20 @@ class Logger {
   }
 
   /// Log error [message] with ability to attach [error] and [stackTrace] objects
-  void error(Object message, [Object? error, StackTrace? stackTrace]) =>
-      _logging.log(this, message, LogLevel.error,
-          error: error, stackTrace: stackTrace);
+  void error(Object message, [Object? error, StackTrace? stackTrace]) {
+    if(error is StackTrace && stackTrace == null) {
+      stackTrace = error;
+      error = null;
+    }
+
+    _logging.log(
+      this,
+      message,
+      LogLevel.error,
+      error: error,
+      stackTrace: stackTrace
+    );
+  }
 
   /// Log warning [message]
   void warning(Object message) => _logging.log(this, message, LogLevel.warning);

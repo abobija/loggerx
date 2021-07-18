@@ -33,7 +33,7 @@ class Logging {
   /// Show or hide milliseconds in datetime
   var milliseconds = true;
 
-  void log(Logger logger, Object msg, LogLevel level,
+  void log(Logger logger, Object? msg, LogLevel level,
       {Object? error, StackTrace? stackTrace}) {
     if (!enabled || level.index > this.level.index) {
       return;
@@ -63,7 +63,7 @@ class Logging {
       '] [',
       level.toString().split('.')[1].toUpperCase(),
       '] ',
-      msg.toString(),
+      msg == null ? '' : msg.toString(),
       LogColor.$null
     ]);
 

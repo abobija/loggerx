@@ -1,3 +1,7 @@
+## 1.3.3
+
+Ability to log exception with stacktrace like `log.error(e, s)`. No need for message.
+
 ## 1.3.2
 
 Formating.
