@@ -15,9 +15,11 @@ void main() {
   customLogger.error("Immediately abort everything!");
   customLogger.verbose("Verbose message from custom logger");
 
+  logging.filter('second_logger', LogLevel.info);
+
   secondLogger.info("Hello from second logger");
 
-  // This will not be displayed because level of second logger is [LogLevel.info]
+  // This will not be displayed because level of second logger is filtered to [LogLevel.info]
   secondLogger.debug("Debug from second logger");
 
   // But custom logger still can print out verbose logs
