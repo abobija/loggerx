@@ -1,3 +1,7 @@
+## 1.3.5
+
+Dependencies versions bump.
+
 ## 1.3.4
 
 - Example `second_logger` filter

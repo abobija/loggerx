@@ -1,5 +1,4 @@
 import 'package:loggerx/loggerx.dart';
-import 'package:loggerx/src/log_level.dart';
 import 'package:loggerx/src/logging.dart';
 
 /// Loggerx

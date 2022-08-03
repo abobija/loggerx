@@ -2,8 +2,6 @@ import 'package:intl/intl.dart';
 import 'package:loggerx/loggerx.dart';
 import 'package:loggerx/src/log_color.dart';
 import 'package:loggerx/src/log_filter.dart';
-import 'package:loggerx/src/log_level.dart';
-import 'package:loggerx/src/logger.dart';
 
 final _lvlColor = {
   LogLevel.none: LogColor.cyan,
