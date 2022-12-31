@@ -1,3 +1,8 @@
+## 1.3.6
+
+- Specifying linter
+- Bump dependencie versions
+
 ## 1.3.5
 
 Dependencies versions bump.
