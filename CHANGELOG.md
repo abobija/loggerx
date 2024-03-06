@@ -1,3 +1,8 @@
+## 2.0.0
+
+- Upgrade all dependencies
+- Upgrade to Dart SDK 3
+
 ## 1.3.6
 
 - Specifying linter
