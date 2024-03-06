@@ -43,7 +43,7 @@ class Logging {
       return;
     }
 
-    if (!(msg is List) && msg is Iterable) {
+    if (msg is! List && msg is Iterable) {
       // considering as lazy iterable
       msg = msg.toList();
     }
