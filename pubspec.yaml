@@ -5,9 +5,9 @@ homepage: https://abobija.com
 repository: https://github.com/abobija/loggerx
 
 environment:
-  sdk: ">=2.12.0 <3.0.0"
-  
+  sdk: ">=3.0.0 <4.0.0"
+
 dependencies:
-  intl: ^0.18.0
+  intl: ^0.18.1
 dev_dependencies:
-  lints: ^2.0.1
+  lints: ^2.1.1
